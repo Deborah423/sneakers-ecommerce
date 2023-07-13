@@ -33,8 +33,14 @@ export default function Main() {
           </p>
         </div>
 
-        <div>
-          <p className="font-bold text-4xl pb-6">${125.0 * (count || 1)}.00</p>
+        <div className="p-4 ">
+          <div className="flex justify-start">
+              <p className="font-bold text-4xl pb-6 mr-9">${125.0 * (count || 1)}.00</p>
+              <p className="text-xl text-orange-500 font-bold rounded-sm py-1 px-2 h-fit  bg-orange-200">50%</p>
+          </div>
+          <p className="line-through text-lg text-gray-400 font-bold ">
+            $250.00
+          </p>
         </div>
 
         <div className="justify-center flex">

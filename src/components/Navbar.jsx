@@ -39,7 +39,7 @@ function Navbar() {
             </div>
           </div>
           <div className="flex space-x-10 items-center justify-end">
-            <div>
+            <div className="flex">
               <img className="w-5 h-5" src={cart} alt="img" />
               <span>{count > 0 && count}</span>
             </div>
