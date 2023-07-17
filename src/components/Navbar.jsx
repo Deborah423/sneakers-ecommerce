@@ -4,9 +4,11 @@ import profile from "../images/image-avatar.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import CartContext from "../context/Cart";
+import CartPage from "./CartPage";
+
 function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { count } = useContext(CartContext);
+  const { count, isOpen, toggleCart } = useContext(CartContext);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -14,11 +16,14 @@ function Navbar() {
 
   return (
     <div>
-      <div className="px-5 pb-5 md:px-10 w-screen my-auto  ">
-        <nav className=" md:shadow-sm flex justify-between pt-4 pb-5 items-center">
+      <div className=" w-screen my-auto   px-10 ">
+        <nav className=" md:border-b  border-grey-100 flex justify-between pt-4 pb-5 items-center">
           <div className="flex gap-10  ">
             <div className=" flex md:block justify-start items-center ">
-              <div className="md:hidden mr-6" onClick={toggleMobileMenu}>
+              <div
+                className="md:hidden mr-6 cursor-pointer "
+                onClick={toggleMobileMenu}
+              >
                 <FontAwesomeIcon icon={faBars} />
               </div>
 
@@ -30,7 +35,10 @@ function Navbar() {
               <ul className="flex items-stretch h-full space-x-8   ">
                 {["collections", "men", "women", "about", "contact"].map(
                   (i) => (
-                    <li className="cursor-pointer capitalize hover:border-b-2  border-orange-300 h-full ">
+                    <li
+                      className="cursor-pointer capitalize hover:border-b-2  border-orange-300 h-full "
+                      key={i}
+                    >
                       {i}
                     </li>
                   )
@@ -39,12 +47,21 @@ function Navbar() {
             </div>
           </div>
           <div className="flex space-x-10 items-center justify-end">
-            <div className="flex">
-              <img className="w-5 h-5" src={cart} alt="img" />
-              <span>{count > 0 && count}</span>
+            <div onClick={toggleCart} className="flex">
+              <img className="w-6 h-6 cursor-pointer" src={cart} alt="img" />
+              <span className="bg-red-500 rounded-full w-4 h-3 translate-x-[-13px] text-xs flex justify-center">
+                {count > 0 && count}
+              </span>
+            </div>
+            <div className="absolute top-[9%] md:top-[13%] shadow-lg bg-white">
+              {isOpen ? <CartPage /> : null}
             </div>
 
-            <img className="w-12 h-12" src={profile} alt="profile" />
+            <img
+              className="w-12 h-12 cursor-pointer"
+              src={profile}
+              alt="profile"
+            />
           </div>
         </nav>
       </div>

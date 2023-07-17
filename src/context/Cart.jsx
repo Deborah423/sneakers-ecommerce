@@ -1,9 +1,16 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useState } from 'react';
 
 const CartContext = createContext();
 
 function CartProvider(props = {}) {
     const [count, setCount] = useState(0);
+    const [isOpen, setOpen] = useState(false);
+
+
+    function toggleCart() {
+      setOpen(p => !p);
+    }
+
 
     function deductCounter() {
         if (count) {
@@ -19,7 +26,7 @@ function CartProvider(props = {}) {
 
   return (
     <CartContext.Provider
-        value={{ count, incrementCounter, deductCounter, setCount }}
+        value={{ count, incrementCounter, deductCounter, setCount, isOpen, toggleCart }}
     >
       { props.children }
     </CartContext.Provider>

@@ -8,6 +8,7 @@ import CartContext from "../context/Cart";
 export default function Main() {
   //   const [counter, setCounter] = useState(0);
   const { count, deductCounter, setCount } = useContext(CartContext);
+
   return (
     <div className="block md:flex justify-between md:w-4/5 m-auto md:pt-10">
       <div className="flex-1">
@@ -35,36 +36,45 @@ export default function Main() {
 
         <div className="p-4 ">
           <div className="flex justify-start">
-              <p className="font-bold text-4xl pb-6 mr-9">${125.0 * (count || 1)}.00</p>
-              <p className="text-xl text-orange-500 font-bold rounded-sm py-1 px-2 h-fit  bg-orange-200">50%</p>
+            <p className="font-bold text-4xl pb-6 mr-9">
+              {/* ${125.0 * (count || 1)}.00 */}
+              $125.00
+            </p>
+            <p className="text-xl text-orange-500 font-bold rounded-sm py-1 px-2 h-fit  bg-orange-200">
+              50%
+            </p>
           </div>
           <p className="line-through text-lg text-gray-400 font-bold ">
             $250.00
           </p>
         </div>
 
-        <div className="justify-center flex">
-          <div className=" bg-slate-100 mb-3 flex justify-around rounded-md w-full mx-4 h-14 ">
-            <button onClick={deductCounter}>
-              <img src={minus} alt="minus" />
-            </button>
-            <input
-              className="text-center text-lg bg-slate-100"
-              value={count}
-              type="number"
-              onChange={(e) => setCount(parseInt(e.target.value))}
-            />
-            <button onClick={() => setCount(count + 1)}>
-              <img className="" src={plus} alt="plus" />
-            </button>
-          </div>
-        </div>
+        <div className="block md:flex">
 
-        <div className="justify-center flex ">
-          <div className="flex bg-orange-500 rounded-md w-full mx-4 h-14 gap-3 justify-center items-center cursor-pointer">
-            <CartIcon className="fill-white" />
-            <p className="text-white">Add to cart</p>
+          <div className="justify-center flex w-full">
+            <div className=" bg-slate-100 mb-3 flex justify-around rounded-md w-full mx-4 h-14 ">
+              <button onClick={deductCounter}>
+                <img src={minus} alt="minus" />
+              </button>
+              <input
+                className="text-center text-lg bg-slate-100"
+                value={count}
+                type="number"
+                onChange={(e) => setCount(parseInt(e.target.value))}
+              />
+              <button onClick={() => setCount(count + 1)}>
+                <img className="" src={plus} alt="plus" />
+              </button>
+            </div>
           </div>
+
+          <div className="justify-center flex w-full">
+            <div className="flex bg-orange-500 rounded-md w-full mx-4 h-14 gap-3 justify-center items-center cursor-pointer">
+              <CartIcon className="fill-white" />
+              <p className="text-white">Add to cart</p>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
