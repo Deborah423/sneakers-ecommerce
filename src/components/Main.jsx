@@ -1,22 +1,55 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import sneaks from "../images/image-product-1.jpg";
+import sneaks2 from "../images/image-product-2.jpg";
+import sneaks3 from "../images/image-product-3.jpg";
+import sneaks4 from "../images/image-product-4.jpg";
 import minus from "../images/icon-minus.svg";
 import plus from "../images/icon-plus.svg";
 import { ReactComponent as CartIcon } from "../images/cart-plain.svg";
 import CartContext from "../context/Cart";
 
 export default function Main() {
-  //   const [counter, setCounter] = useState(0);
-  const { count, deductCounter, setCount, appendCart } = useContext(CartContext);
+  const { count, deductCounter, setCount, appendCart } =
+    useContext(CartContext);
+  const images = [
+    "/image-product-1-thumbnail.jpg",
+    "/image-product-2-thumbnail.jpg",
+    "/image-product-3-thumbnail.jpg",
+    "/image-product-4-thumbnail.jpg",
+  ];
+
+  const image = [sneaks, sneaks2, sneaks3, sneaks4];
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImageIndex((prevIndex) =>
+        prevIndex === image.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 3000);
+    return () => {
+      clearInterval(timer);
+    };
+  }, [image.length]);
 
   return (
     <div className="block md:flex justify-between md:w-4/5 m-auto md:pt-10">
       <div className="flex-1">
         <img
-          className="object-cover h-80 w-full md:rounded-xl md:h-96  md:w-96"
-          src={sneaks}
+          className="object-fill h-80 w-full md:rounded-xl md:h-96  md:w-96 "
+          src={images[currentImageIndex]}
           alt="img"
         />
+        <div className="flex mt-4 gap-4 ml-2 ">
+          {images.map((image, index) => (
+            <img
+              key={index}
+              className="object-cover hidden md:block h-20 md:w-20  rounded-md cursor-pointer hover:border-2  border-orange-300"
+              src={image}
+              alt="thumbnail"
+            />
+          ))}
+        </div>
       </div>
 
       <div className="flex-1">
@@ -50,7 +83,6 @@ export default function Main() {
         </div>
 
         <div className="block md:flex">
-
           <div className="justify-center flex w-full">
             <div className=" bg-slate-100 mb-3 flex justify-around   rounded-md w-full mx-4 md:mx-0 h-14 ">
               <button onClick={deductCounter}>
@@ -69,12 +101,14 @@ export default function Main() {
           </div>
 
           <div className="justify-center flex w-full">
-            <div className="flex bg-orange-500 rounded-md w-full mx-4 h-14 gap-3 justify-center items-center cursor-pointer" onClick={appendCart}>
+            <div
+              className="flex bg-orange-500 rounded-md w-full mx-4 h-14 gap-3 justify-center items-center cursor-pointer"
+              onClick={appendCart}
+            >
               <CartIcon className="fill-white" />
               <p className="text-white">Add to cart</p>
             </div>
           </div>
-
         </div>
       </div>
     </div>
