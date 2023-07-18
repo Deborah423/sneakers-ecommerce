@@ -33,27 +33,29 @@ export default function Main() {
   }, [image.length]);
 
   return (
-    <div className="block md:flex justify-between md:w-4/5 m-auto md:pt-10">
+    <div className="block md:flex justify-between md:w-4/5 m-auto md:pt-10 w-full">
       <div className="flex-1">
-        <img
-          className="object-fill h-80 w-full md:rounded-xl md:h-96  md:w-96 "
-          src={images[currentImageIndex]}
-          alt="img"
-        />
-        <div className="flex mt-4 gap-4 ml-2 ">
-          {images.map((image, index) => (
-            <img
-              key={index}
-              className="object-cover hidden md:block h-20 md:w-20  rounded-md cursor-pointer hover:border-2  border-orange-300"
-              src={image}
-              alt="thumbnail"
-            />
-          ))}
+        <div className=" w-full md:w-96 ">
+          <img
+            className="object-fill h-64 w-full md:rounded-xl md:h-80  md:w-96 "
+            src={images[currentImageIndex]}
+            alt="img"
+          />
+          <div className="flex mt-4 gap-4 ml-2">
+            {images.map((image, index) => (
+              <img
+                key={index}
+                className="object-contain hidden md:block h-20 md:w-20  rounded-md cursor-pointer hover:border-2  border-orange-300"
+                src={image}
+                alt="thumbnail"
+              />
+            ))}
+          </div>
         </div>
       </div>
 
       <div className="flex-1">
-        <div>
+        <div className="w-80 h-64">
           <h2 className="text-sm p-4 text-orange-500">
             <strong>SNEAKERS COMPANY</strong>
           </h2>

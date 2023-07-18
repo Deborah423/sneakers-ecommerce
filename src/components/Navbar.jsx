@@ -16,7 +16,7 @@ function Navbar() {
 
   return (
     <div>
-      <div className=" w-screen my-auto   px-10 ">
+      <div className=" my-auto w-full  px-10 ">
         <nav className=" md:border-b  border-grey-100 flex justify-between pt-4 pb-5 items-center">
           <div className="flex gap-10  ">
             <div className=" flex md:block justify-start items-center ">
