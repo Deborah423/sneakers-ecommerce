@@ -5,7 +5,7 @@ import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import sneaks from "../images/image-product-1.jpg";
 
 export default function CartPage() {
-  const { count } = useContext(CartContext);
+  const { inCart: count, handleClearCart } = useContext(CartContext);
 
   return (
     <div className="w-80 h-50  ">
@@ -30,7 +30,7 @@ export default function CartPage() {
                 </strong>
               </p>
             </div>
-            <FontAwesomeIcon icon={faTrashCan} className="" />
+            <FontAwesomeIcon icon={faTrashCan} onClick={handleClearCart} />
           </div>
           <button className="flex my-5 text-white bg-orange-400 rounded-md m-auto w-5/6 h-10 justify-center items-center cursor-pointer">
             Checkout

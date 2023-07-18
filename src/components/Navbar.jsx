@@ -8,7 +8,7 @@ import CartPage from "./CartPage";
 
 function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { count, isOpen, toggleCart } = useContext(CartContext);
+  const { inCart, isOpen, toggleCart } = useContext(CartContext);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -49,9 +49,11 @@ function Navbar() {
           <div className="flex space-x-10 items-center justify-end">
             <div onClick={toggleCart} className="flex">
               <img className="w-6 h-6 cursor-pointer" src={cart} alt="img" />
-              <span className="bg-red-500 rounded-full w-4 h-3 translate-x-[-13px] text-xs flex justify-center">
-                {count > 0 && count}
-              </span>
+              {inCart > 0 ? (
+                <span className="bg-red-500 rounded-full w-4 h-3 translate-x-[-13px] text-xs flex justify-center">
+                  {inCart > 0 && inCart}
+                </span>
+              ) : null}
             </div>
             <div className="absolute top-[9%] md:top-[13%] shadow-lg bg-white">
               {isOpen ? <CartPage /> : null}

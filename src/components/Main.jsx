@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import sneaks from "../images/image-product-1.jpg";
 import minus from "../images/icon-minus.svg";
 import plus from "../images/icon-plus.svg";
@@ -7,7 +7,7 @@ import CartContext from "../context/Cart";
 
 export default function Main() {
   //   const [counter, setCounter] = useState(0);
-  const { count, deductCounter, setCount } = useContext(CartContext);
+  const { count, deductCounter, setCount, appendCart } = useContext(CartContext);
 
   return (
     <div className="block md:flex justify-between md:w-4/5 m-auto md:pt-10">
@@ -52,12 +52,12 @@ export default function Main() {
         <div className="block md:flex">
 
           <div className="justify-center flex w-full">
-            <div className=" bg-slate-100 mb-3 flex justify-around rounded-md w-full mx-4 h-14 ">
+            <div className=" bg-slate-100 mb-3 flex justify-around   rounded-md w-full mx-4 md:mx-0 h-14 ">
               <button onClick={deductCounter}>
                 <img src={minus} alt="minus" />
               </button>
               <input
-                className="text-center text-lg bg-slate-100"
+                className="text-center text-lg bg-slate-100 w-1/4"
                 value={count}
                 type="number"
                 onChange={(e) => setCount(parseInt(e.target.value))}
@@ -69,7 +69,7 @@ export default function Main() {
           </div>
 
           <div className="justify-center flex w-full">
-            <div className="flex bg-orange-500 rounded-md w-full mx-4 h-14 gap-3 justify-center items-center cursor-pointer">
+            <div className="flex bg-orange-500 rounded-md w-full mx-4 h-14 gap-3 justify-center items-center cursor-pointer" onClick={appendCart}>
               <CartIcon className="fill-white" />
               <p className="text-white">Add to cart</p>
             </div>
