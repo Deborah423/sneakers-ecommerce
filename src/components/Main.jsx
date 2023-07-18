@@ -33,7 +33,7 @@ export default function Main() {
   }, [image.length]);
 
   return (
-    <div className="block md:flex justify-between md:w-4/5 m-auto md:pt-10 w-full">
+    <div className="block md:flex justify-between md:w-4/5 m-auto md:pt-10 pb-10 md:pb-1 w-full">
       <div className="flex-1">
         <div className=" w-full md:w-96 ">
           <img
